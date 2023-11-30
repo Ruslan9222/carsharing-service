@@ -7,6 +7,6 @@
 6. Maven
 7. Spring Security
 8. Docker & Docker Compose
-9. Spring Tests and Integrational Tests *
+9. Spring Tests and Integrational Tests
 10. Logging
 11. Swagger if REST API
