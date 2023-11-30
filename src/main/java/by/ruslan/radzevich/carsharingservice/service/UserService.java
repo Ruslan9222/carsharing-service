@@ -1,12 +1,13 @@
 package by.ruslan.radzevich.carsharingservice.service;
 
 
+import by.ruslan.radzevich.carsharingservice.exception.UserNotFoundException;
+import by.ruslan.radzevich.carsharingservice.model.Role;
 import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
