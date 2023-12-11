@@ -64,11 +64,11 @@ public class UserController {
         return ResponseEntity.ok(save);
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity.BodyBuilder updateEmailById(
-//            @RequestBody UpdateEmailDto updateTestDto,
-//            @PathVariable("id") long id) {
-//        userService.updateEmailWithCustomQuery(id, String.valueOf(updateTestDto));
-//        return ResponseEntity.ok();
-//    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity.BodyBuilder updateEmailById(
+            @RequestBody UpdateEmailDto updateTestDto,
+            @PathVariable("id") long id) {
+        userService.updateEmailWithCustomQuery(id, String.valueOf(updateTestDto));
+        return ResponseEntity.ok();
+    }
 }

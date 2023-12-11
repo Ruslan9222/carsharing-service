@@ -12,9 +12,9 @@ import java.util.Optional;
 
 @EnableJpaRepositories
 public interface UserRepository extends JpaRepository<User, Long> {
-//    @Modifying
-//    @Query("update User u set u.email = :email where u.id = :id")
-//    void updateEmailByID(@Param(value = "id") long id, @Param(value = "email") String email);
+    @Modifying
+    @Query("update User u set u.email = :email where u.id = :id")
+    void updateEmailByID(@Param(value = "id") long id, @Param(value = "email") String email);
 
     Optional<User> findByUsername(String username);
 }
