@@ -23,6 +23,8 @@ public class User implements UserDetails {
     private String name;
     private String username;
     private String password;
+    private byte[] driversLicense;
+    private String email;
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)

@@ -33,4 +33,7 @@ public class UserService implements UserDetailsService {
         Optional<User> byUsername = userRepository.findByUsername(username);
         return byUsername.orElseThrow(UserNotFoundException::new);
     }
+    public void updateEmailWithCustomQuery(Long id, String email) {
+        userRepository.updateEmailByID(id, email);
+    }
 }
