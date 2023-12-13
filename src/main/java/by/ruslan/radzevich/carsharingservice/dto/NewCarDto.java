@@ -1,15 +1,11 @@
-//package by.ruslan.radzevich.carsharingservice.dto;
-//
-//import lombok.AllArgsConstructor;
-//import lombok.Getter;
-//import lombok.NoArgsConstructor;
-//import lombok.Setter;
-//
-//@Setter
-//@Getter
-//@AllArgsConstructor
-//@NoArgsConstructor
-//public class NewCarDto {
-//    private String model;
-//    private String winCode;
-//}
+package by.ruslan.radzevich.carsharingservice.dto;
+
+import lombok.*;
+
+@Setter
+@Getter
+@ToString
+public class NewCarDto {
+    private String model;
+    private String winCode;
+}
