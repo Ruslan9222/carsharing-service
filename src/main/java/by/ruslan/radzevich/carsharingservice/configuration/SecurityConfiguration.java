@@ -18,8 +18,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private static final String ADMIN_ENDPOINT = "/api/admin/**";
   private static final String CREATE_USER_ENDPOINT = "/user";
   private static final String LOGIN_ENDPOINT = "/user/login";
-  private static final String CREATE_DIRECTIONAL_ENDPOINT = "/direction";
-  private static final String CREATE_CANDIDATE_ENDPOINT = "/candidate/new";
 
   private static final String[] PUBLIC_URLS = {
       "/v2/api-docs",
@@ -48,9 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
         .authorizeRequests()
         .antMatchers(HttpMethod.POST,
-                CREATE_CANDIDATE_ENDPOINT,
                 CREATE_USER_ENDPOINT,
-                CREATE_DIRECTIONAL_ENDPOINT,
                 LOGIN_ENDPOINT).permitAll()
         .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
         .antMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
