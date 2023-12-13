@@ -20,6 +20,5 @@ public class Car {
     private double latitude;
     private double longitude;
     private byte[] photo;
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+
 }
