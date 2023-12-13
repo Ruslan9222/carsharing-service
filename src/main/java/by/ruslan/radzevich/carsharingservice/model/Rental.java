@@ -20,6 +20,7 @@ public class Rental {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private double costPerMinute;
+    private byte[] photo;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }
