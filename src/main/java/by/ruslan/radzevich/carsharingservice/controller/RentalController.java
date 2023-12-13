@@ -2,6 +2,7 @@ package by.ruslan.radzevich.carsharingservice.controller;
 
 import by.ruslan.radzevich.carsharingservice.service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,8 @@ public class RentalController {
     }
 
     @GetMapping("/calculateTotalCost")
-    public double calculateTotalCost(@RequestParam Long rentalId) {
-        return rentalService.calculateTotalCost(rentalId);
+    public ResponseEntity.BodyBuilder calculateTotalCost(@RequestParam Long rentalId) {
+         rentalService.calculateTotalCost(rentalId);
+        return ResponseEntity.ok();
     }
 }

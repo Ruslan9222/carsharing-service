@@ -1,8 +1,6 @@
 package by.ruslan.radzevich.carsharingservice.controller;
 
-import by.ruslan.radzevich.carsharingservice.dto.NewCarDto;
 import by.ruslan.radzevich.carsharingservice.model.Car;
-import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.CarRepository;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
 import lombok.SneakyThrows;
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/cars")
@@ -42,9 +38,10 @@ public class CarController {
     }
 
     @GetMapping("/nearby")
-    public List<Car> getCarsNearby(@RequestParam double latitude,
-                                   @RequestParam double longitude,
-                                   @RequestParam double radius) {
-        return carService.findCarsNearby(latitude, longitude, radius);
+    public ResponseEntity.BodyBuilder getCarsNearby(@RequestParam double latitude,
+                                                    @RequestParam double longitude,
+                                                    @RequestParam double radius) {
+        carService.findCarsNearby(latitude, longitude, radius);
+        return ResponseEntity.ok();
     }
 }
