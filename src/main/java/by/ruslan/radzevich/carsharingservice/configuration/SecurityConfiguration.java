@@ -1,7 +1,6 @@
 package by.ruslan.radzevich.carsharingservice.configuration;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.CacheMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,6 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private static final String ADMIN_ENDPOINT = "/api/admin/**";
   private static final String CREATE_USER_ENDPOINT = "/user";
   private static final String CREATE_CARS_ENDPOINT = "/cars";
+  private static final String CREATE_CAR_PRICE_ENDPOINT = "/cars/price";
   private static final String CREATE_RENTAL_ENDPOINT = "/rentals";
   private static final String UPDATE_CAR_PHOTO_ENDPOINT = "/cars/{id}/carPhoto";
   private static final String CREATE_RENTAL_PHOTO_ENDPOINT = "/rentals/{id}/carPhoto";
@@ -61,7 +61,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 UPDATE_CAR_PHOTO_ENDPOINT,
                 CREATE_RENTAL_PHOTO_ENDPOINT,
                 UPDATE_DRIVER_LICENSE_ENDPOINT,
-                UPDATE_USER_EMAIL_ENDPOINT
+                UPDATE_USER_EMAIL_ENDPOINT,
+                CREATE_CAR_PRICE_ENDPOINT
                 ).permitAll()
         .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
         .antMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()

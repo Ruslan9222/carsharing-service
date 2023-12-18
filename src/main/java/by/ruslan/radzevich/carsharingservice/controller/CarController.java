@@ -1,6 +1,10 @@
 package by.ruslan.radzevich.carsharingservice.controller;
 
+import by.ruslan.radzevich.carsharingservice.dto.NewCarDto;
+import by.ruslan.radzevich.carsharingservice.mapper.CreateAutoMapper;
 import by.ruslan.radzevich.carsharingservice.model.Car;
+import by.ruslan.radzevich.carsharingservice.model.CarPrice;
+import by.ruslan.radzevich.carsharingservice.repository.CarPriceRepository;
 import by.ruslan.radzevich.carsharingservice.repository.CarRepository;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
 import lombok.RequiredArgsConstructor;
@@ -18,16 +22,25 @@ public class CarController {
 
     private final CarService carService;
     private final CarRepository carRepository;
+    private final CreateAutoMapper createAutoMapper;
+    private final CarPriceRepository carPriceRepository;
 
 
     @PostMapping()
-    public ResponseEntity<Car> create(@RequestBody Car car) {
-        Car addCar = new Car();
-        addCar.setModel(car.getModel());
-        addCar.setWinCode(car.getWinCode());
+    public ResponseEntity<Car> create(@RequestBody NewCarDto newCarDto) {
+        Car addCar = createAutoMapper.newAutoDtoToAuto(newCarDto);
         carRepository.save(addCar);
-        return ResponseEntity.ok(car);
+        return ResponseEntity.ok(addCar);
     }
+
+    @PostMapping("/price")
+    public ResponseEntity<CarPrice> create(@RequestBody CarPrice carPrice) {
+        CarPrice price = new CarPrice();
+        price.setPrice(carPrice.getPrice());
+        carPriceRepository.save(price);
+        return ResponseEntity.ok(price);
+    }
+
 
     @SneakyThrows
     @PutMapping("/{id}/carPhoto")
