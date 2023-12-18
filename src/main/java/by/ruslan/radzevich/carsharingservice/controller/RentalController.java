@@ -1,6 +1,5 @@
 package by.ruslan.radzevich.carsharingservice.controller;
 
-import by.ruslan.radzevich.carsharingservice.model.Car;
 import by.ruslan.radzevich.carsharingservice.model.Rental;
 import by.ruslan.radzevich.carsharingservice.repository.RentalRepository;
 import by.ruslan.radzevich.carsharingservice.service.RentalService;
@@ -22,19 +21,25 @@ public class RentalController {
     private final RentalRepository rentalRepository;
 
     @PostMapping
-    public void rentCar(@RequestParam Long carId, @RequestParam LocalDateTime startTime, @RequestParam LocalDateTime endTime, @RequestParam double costPerMinute) {
+    public void rentCar(@RequestParam Long carId,
+                        @RequestParam LocalDateTime startTime,
+                        @RequestParam LocalDateTime endTime,
+                        @RequestParam double costPerMinute) {
         rentalService.rentCar(carId, startTime, endTime, costPerMinute);
     }
 
     @SneakyThrows
     @PutMapping("/{id}/carPhoto")
     public ResponseEntity<Rental> carPhoto(@RequestBody Long id,
-                                           @RequestPart("photo") MultipartFile photo) {
+                                           @RequestPart("photo") MultipartFile photo,
+                                           @RequestParam String comment) {
         Rental rental = rentalRepository.findById(id).orElseThrow();
         rental.setPhoto(photo.getBytes());
+        rental.setComment(comment);
         Rental save = rentalRepository.save(rental);
         return ResponseEntity.ok(save);
     }
+
 
     @GetMapping("/calculateTotalCost")
     public ResponseEntity.BodyBuilder calculateTotalCost(@RequestParam Long rentalId) {

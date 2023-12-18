@@ -3,7 +3,6 @@ package by.ruslan.radzevich.carsharingservice.service;
 import by.ruslan.radzevich.carsharingservice.model.Rental;
 import by.ruslan.radzevich.carsharingservice.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -23,6 +22,7 @@ public class RentalService {
 
         rentalRepository.save(rental);
     }
+
     public double calculateTotalCost(Long rentalId) {
         Rental rental = rentalRepository.findById(rentalId).orElse(null);
 

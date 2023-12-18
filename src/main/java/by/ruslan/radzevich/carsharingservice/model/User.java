@@ -26,6 +26,9 @@ public class User implements UserDetails {
     private byte[] driversLicense;
     private String email;
 
+
+
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roleList;
