@@ -18,4 +18,5 @@ public class Car extends AbstractModelId {
     private double longitude;
     private byte[] photo;
 
+
 }

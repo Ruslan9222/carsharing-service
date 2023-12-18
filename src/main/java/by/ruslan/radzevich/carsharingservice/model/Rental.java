@@ -18,6 +18,7 @@ public class Rental extends AbstractModelId{
     private LocalDateTime endTime;
     private double costPerMinute;
     private byte[] photo;
+    private String comment;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }

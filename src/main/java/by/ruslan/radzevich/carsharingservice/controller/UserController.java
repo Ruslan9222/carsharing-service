@@ -65,9 +65,9 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity.BodyBuilder updateEmailById(
-            @RequestBody UpdateEmailDto updateTestDto,
+            @RequestBody UpdateEmailDto updateEmailDtoDto,
             @PathVariable("id") long id) {
-        userService.updateEmailWithCustomQuery(id, String.valueOf(updateTestDto));
+        userService.updateEmailWithCustomQuery(id, String.valueOf(updateEmailDtoDto));
         return ResponseEntity.ok();
     }
 }
