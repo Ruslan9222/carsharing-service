@@ -3,6 +3,7 @@ package by.ruslan.radzevich.carsharingservice.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "db_car")
@@ -14,6 +15,7 @@ import javax.persistence.*;
 public class Car extends AbstractModelId {
     private String model;
     private String winCode;
+    private String classCar;
     private double latitude;
     private double longitude;
     private byte[] photo;
