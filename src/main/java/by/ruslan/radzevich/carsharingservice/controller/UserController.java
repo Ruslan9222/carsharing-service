@@ -7,25 +7,24 @@ import by.ruslan.radzevich.carsharingservice.dto.UpdateEmailDto;
 import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.UserRepository;
 import by.ruslan.radzevich.carsharingservice.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private UserService userService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private JWTTokenProvider tokenProvider;
+    private final UserService userService;
+
+    private final JWTTokenProvider tokenProvider;
 
     @SneakyThrows
     @PostMapping("/new")

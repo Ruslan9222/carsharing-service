@@ -3,22 +3,22 @@ package by.ruslan.radzevich.carsharingservice.controller;
 import by.ruslan.radzevich.carsharingservice.model.Car;
 import by.ruslan.radzevich.carsharingservice.repository.CarRepository;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/cars")
 public class CarController {
-    @Autowired
-    private CarService carService;
-    @Autowired
-    private CarRepository carRepository;
+
+    private final CarService carService;
+    private final CarRepository carRepository;
 
 
-    @PostMapping("/car")
+    @PostMapping()
     ResponseEntity<Car> create(@RequestBody Car car) {
         Car addCar = new Car();
         addCar.setModel(car.getModel());

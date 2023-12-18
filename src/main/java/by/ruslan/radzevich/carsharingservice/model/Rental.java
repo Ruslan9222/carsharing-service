@@ -12,10 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Rental {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Rental extends AbstractModelId{
     private Long carId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

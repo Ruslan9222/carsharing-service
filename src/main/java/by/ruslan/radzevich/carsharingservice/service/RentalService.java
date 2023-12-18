@@ -2,16 +2,17 @@ package by.ruslan.radzevich.carsharingservice.service;
 
 import by.ruslan.radzevich.carsharingservice.model.Rental;
 import by.ruslan.radzevich.carsharingservice.repository.RentalRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@RequiredArgsConstructor
 @Service
 public class RentalService {
-    @Autowired
-    private RentalRepository rentalRepository;
+    private final RentalRepository rentalRepository;
 
     public void rentCar(Long carId, LocalDateTime startTime, LocalDateTime endTime, double costPerMinute) {
         Rental rental = new Rental();
