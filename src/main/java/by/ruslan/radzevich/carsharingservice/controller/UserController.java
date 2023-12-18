@@ -2,9 +2,13 @@ package by.ruslan.radzevich.carsharingservice.controller;
 
 import by.ruslan.radzevich.carsharingservice.configuration.JWTTokenProvider;
 import by.ruslan.radzevich.carsharingservice.dto.AuthRequestDto;
+import by.ruslan.radzevich.carsharingservice.dto.CreateCardDto;
 import by.ruslan.radzevich.carsharingservice.dto.CreateUserDto;
 import by.ruslan.radzevich.carsharingservice.dto.UpdateEmailDto;
+import by.ruslan.radzevich.carsharingservice.mapper.CreateCardMapper;
+import by.ruslan.radzevich.carsharingservice.model.Card;
 import by.ruslan.radzevich.carsharingservice.model.User;
+import by.ruslan.radzevich.carsharingservice.repository.CardRepository;
 import by.ruslan.radzevich.carsharingservice.repository.UserRepository;
 import by.ruslan.radzevich.carsharingservice.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +29,8 @@ public class UserController {
     private final UserService userService;
 
     private final JWTTokenProvider tokenProvider;
+    private final CreateCardMapper createCardMapper;
+    private final CardRepository cardRepository;
 
 
     @SneakyThrows
@@ -53,6 +59,17 @@ public class UserController {
             return ResponseEntity.ok(token);
         }
         return ResponseEntity.badRequest().build();
+    }
+    @PostMapping("/card")
+    public ResponseEntity<Card> addCardFromUser(@RequestBody CreateCardDto createCardDto){
+        Card cardToCard = createCardMapper.createCardToCard(createCardDto);
+        cardRepository.save(cardToCard);
+        return ResponseEntity.ok(cardToCard);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Card> deleteCardById(@PathVariable Long id) {
+        cardRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @SneakyThrows
