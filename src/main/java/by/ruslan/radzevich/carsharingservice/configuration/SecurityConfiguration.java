@@ -65,7 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 UPDATE_DRIVER_LICENSE_ENDPOINT,
                 UPDATE_USER_EMAIL_ENDPOINT,
                 CREATE_CAR_PRICE_ENDPOINT,
-                CREATE_CARD_ENDPOINT
+                CREATE_CARD_ENDPOINT,
+                DELETE_CARD_ENDPOINT
                 ).permitAll()
         .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
         .antMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
