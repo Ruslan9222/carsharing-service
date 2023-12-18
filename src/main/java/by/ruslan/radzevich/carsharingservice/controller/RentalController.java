@@ -41,9 +41,9 @@ public class RentalController {
     }
 
 
+
     @GetMapping("/calculateTotalCost")
-    public ResponseEntity.BodyBuilder calculateTotalCost(@RequestParam Long rentalId) {
-        rentalService.calculateTotalCost(rentalId);
-        return ResponseEntity.ok();
+    public double calculateTotalCost(@RequestParam Long rentalId) {
+        return rentalService.calculateTotalCost(rentalId);
     }
 }

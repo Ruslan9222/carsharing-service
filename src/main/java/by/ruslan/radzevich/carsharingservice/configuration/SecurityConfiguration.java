@@ -1,6 +1,7 @@
 package by.ruslan.radzevich.carsharingservice.configuration;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.CacheMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -17,6 +19,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private static final String ADMIN_ENDPOINT = "/api/admin/**";
   private static final String CREATE_USER_ENDPOINT = "/user";
+  private static final String CREATE_CARS_ENDPOINT = "/cars";
+  private static final String CREATE_RENTAL_ENDPOINT = "/rentals";
+  private static final String UPDATE_CAR_PHOTO_ENDPOINT = "/cars/{id}/carPhoto";
+  private static final String CREATE_RENTAL_PHOTO_ENDPOINT = "/rentals/{id}/carPhoto";
+  private static final String UPDATE_DRIVER_LICENSE_ENDPOINT = "/user/{id}/driversLicense";
+  private static final String UPDATE_USER_EMAIL_ENDPOINT = "/user/{id}";
   private static final String LOGIN_ENDPOINT = "/user/login";
 
   private static final String[] PUBLIC_URLS = {
@@ -47,7 +55,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(HttpMethod.POST,
                 CREATE_USER_ENDPOINT,
-                LOGIN_ENDPOINT).permitAll()
+                LOGIN_ENDPOINT,
+                CREATE_CARS_ENDPOINT,
+                CREATE_RENTAL_ENDPOINT,
+                UPDATE_CAR_PHOTO_ENDPOINT,
+                CREATE_RENTAL_PHOTO_ENDPOINT,
+                UPDATE_DRIVER_LICENSE_ENDPOINT,
+                UPDATE_USER_EMAIL_ENDPOINT
+                ).permitAll()
         .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
         .antMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
         .antMatchers("/db/**").permitAll()

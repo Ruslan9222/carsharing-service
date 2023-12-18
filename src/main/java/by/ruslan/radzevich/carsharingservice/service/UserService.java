@@ -6,7 +6,6 @@ import by.ruslan.radzevich.carsharingservice.model.Role;
 import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

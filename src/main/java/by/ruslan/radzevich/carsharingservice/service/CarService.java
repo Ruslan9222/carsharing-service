@@ -3,7 +3,6 @@ package by.ruslan.radzevich.carsharingservice.service;
 import by.ruslan.radzevich.carsharingservice.model.Car;
 import by.ruslan.radzevich.carsharingservice.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

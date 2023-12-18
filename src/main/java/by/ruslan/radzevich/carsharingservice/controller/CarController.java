@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/cars")
@@ -19,7 +21,7 @@ public class CarController {
 
 
     @PostMapping()
-    ResponseEntity<Car> create(@RequestBody Car car) {
+    public ResponseEntity<Car> create(@RequestBody Car car) {
         Car addCar = new Car();
         addCar.setModel(car.getModel());
         addCar.setWinCode(car.getWinCode());
@@ -38,10 +40,10 @@ public class CarController {
     }
 
     @GetMapping("/nearby")
-    public ResponseEntity.BodyBuilder getCarsNearby(@RequestParam double latitude,
-                                                    @RequestParam double longitude,
-                                                    @RequestParam double radius) {
-        carService.findCarsNearby(latitude, longitude, radius);
-        return ResponseEntity.ok();
+    public List<Car> getCarsNearby(@RequestParam double latitude,
+                                   @RequestParam double longitude,
+                                   @RequestParam double radius) {
+        return carService.findCarsNearby(latitude, longitude, radius);
     }
+
 }
