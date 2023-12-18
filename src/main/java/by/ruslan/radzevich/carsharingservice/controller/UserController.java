@@ -66,7 +66,7 @@ public class UserController {
         cardRepository.save(cardToCard);
         return ResponseEntity.ok(cardToCard);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/card/{id}")
     public ResponseEntity<Card> deleteCardById(@PathVariable Long id) {
         cardRepository.deleteById(id);
         return ResponseEntity.noContent().build();

@@ -21,6 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private static final String CREATE_CARS_ENDPOINT = "/cars";
   private static final String CREATE_CAR_PRICE_ENDPOINT = "/cars/price";
   private static final String CREATE_RENTAL_ENDPOINT = "/rentals";
+  private static final String DELETE_CARD_ENDPOINT = "/card/{id}";
+  private static final String CREATE_CARD_ENDPOINT = "/card";
   private static final String UPDATE_CAR_PHOTO_ENDPOINT = "/cars/{id}/carPhoto";
   private static final String CREATE_RENTAL_PHOTO_ENDPOINT = "/rentals/{id}/carPhoto";
   private static final String UPDATE_DRIVER_LICENSE_ENDPOINT = "/user/{id}/driversLicense";
@@ -62,7 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 CREATE_RENTAL_PHOTO_ENDPOINT,
                 UPDATE_DRIVER_LICENSE_ENDPOINT,
                 UPDATE_USER_EMAIL_ENDPOINT,
-                CREATE_CAR_PRICE_ENDPOINT
+                CREATE_CAR_PRICE_ENDPOINT,
+                CREATE_CARD_ENDPOINT
                 ).permitAll()
         .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
         .antMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
