@@ -26,8 +26,9 @@ public class UserController {
 
     private final JWTTokenProvider tokenProvider;
 
+
     @SneakyThrows
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<User> create(@RequestPart("candidate") CreateUserDto dto,
                                        @RequestPart("driversLicense") MultipartFile driversLicense) {
         User user = new User();
@@ -35,6 +36,7 @@ public class UserController {
         user.setUsername(dto.getUsername());
         user.setDriversLicense(driversLicense.getBytes());
         user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
         User newUser = userService.create(user);
         return ResponseEntity.ok(newUser);
     }
