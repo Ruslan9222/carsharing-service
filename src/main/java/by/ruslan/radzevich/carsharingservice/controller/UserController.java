@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity.BodyBuilder updateEmailById(
             @RequestBody UpdateEmailDto updateTestDto,
             @PathVariable("id") long id) {
