@@ -21,7 +21,7 @@ public class RentalController {
 
     private final RentalRepository rentalRepository;
 
-    @PostMapping("/rent")
+    @PostMapping
     public void rentCar(@RequestParam Long carId, @RequestParam LocalDateTime startTime, @RequestParam LocalDateTime endTime, @RequestParam double costPerMinute) {
         rentalService.rentCar(carId, startTime, endTime, costPerMinute);
     }
