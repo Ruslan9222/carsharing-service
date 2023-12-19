@@ -20,10 +20,16 @@ services:
     ports:
       - 5433:5432
     restart: always
+    volumes:
+      - test:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=postgres
+
+
+volumes:
+  test: { }
 
 
 

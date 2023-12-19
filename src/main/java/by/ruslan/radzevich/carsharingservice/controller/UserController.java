@@ -35,7 +35,7 @@ public class UserController {
 
     @SneakyThrows
     @PostMapping
-    public ResponseEntity<User> create(@RequestPart("candidate") CreateUserDto dto,
+    public ResponseEntity<User> create(@RequestPart("driver") CreateUserDto dto,
                                        @RequestPart("driversLicense") MultipartFile driversLicense) {
         User user = new User();
         user.setName(dto.getName());
