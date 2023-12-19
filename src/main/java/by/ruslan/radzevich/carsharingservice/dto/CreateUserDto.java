@@ -12,6 +12,5 @@ public class CreateUserDto {
     private String name;
     private String username;
     private String password;
-    private MultipartFile driverLicence;
     private String email;
 }

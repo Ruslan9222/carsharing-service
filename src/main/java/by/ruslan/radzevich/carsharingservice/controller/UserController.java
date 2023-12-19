@@ -6,6 +6,7 @@ import by.ruslan.radzevich.carsharingservice.dto.CreateCardDto;
 import by.ruslan.radzevich.carsharingservice.dto.CreateUserDto;
 import by.ruslan.radzevich.carsharingservice.dto.UpdateEmailDto;
 import by.ruslan.radzevich.carsharingservice.mapper.CreateCardMapper;
+import by.ruslan.radzevich.carsharingservice.mapper.UserMapper;
 import by.ruslan.radzevich.carsharingservice.model.Card;
 import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.CardRepository;
@@ -25,28 +26,19 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
 
     private final UserRepository userRepository;
-
     private final UserService userService;
-
     private final JWTTokenProvider tokenProvider;
     private final CreateCardMapper createCardMapper;
     private final CardRepository cardRepository;
+    private final UserMapper userMapper;
 
 
-    @SneakyThrows
     @PostMapping
-    public ResponseEntity<User> create(@RequestPart("driver") CreateUserDto dto,
-                                       @RequestPart("driversLicense") MultipartFile driversLicense) {
-        User user = new User();
-        user.setName(dto.getName());
-        user.setUsername(dto.getUsername());
-        user.setDriversLicense(driversLicense.getBytes());
-        user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
-        User newUser = userRepository.save(user);
-        return ResponseEntity.ok(newUser);
+    public ResponseEntity<User> registration(@RequestBody CreateUserDto dto){
+        User userDtoToUser = userMapper.createUserDtoToUser(dto);
+        User user = userService.create(userDtoToUser);
+        return ResponseEntity.ok(user);
     }
-
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody AuthRequestDto dto) {
 
