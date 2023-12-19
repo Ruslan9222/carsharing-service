@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Card extends AbstractModelId {
     private Integer number;
     private String cv;
-    private Integer name;
+    private String name;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User ownerCard;

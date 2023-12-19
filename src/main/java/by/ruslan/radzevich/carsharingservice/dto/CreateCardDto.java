@@ -8,5 +8,5 @@ import lombok.*;
 public class CreateCardDto {
     private Integer number;
     private String cv;
-    private Integer name;
+    private String name;
 }

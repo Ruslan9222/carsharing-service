@@ -43,7 +43,7 @@ public class UserController {
         user.setDriversLicense(driversLicense.getBytes());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
-        User newUser = userService.create(user);
+        User newUser = userRepository.save(user);
         return ResponseEntity.ok(newUser);
     }
 
