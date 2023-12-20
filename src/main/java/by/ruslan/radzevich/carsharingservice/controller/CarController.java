@@ -6,6 +6,7 @@ import by.ruslan.radzevich.carsharingservice.model.Car;
 import by.ruslan.radzevich.carsharingservice.model.CarPrice;
 import by.ruslan.radzevich.carsharingservice.repository.CarPriceRepository;
 import by.ruslan.radzevich.carsharingservice.repository.CarRepository;
+import by.ruslan.radzevich.carsharingservice.repository.view.CarsView;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -57,6 +58,10 @@ public class CarController {
                                    @RequestParam double longitude,
                                    @RequestParam double radius) {
         return carService.findCarsNearby(latitude, longitude, radius);
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<CarsView>> findAll() {
+        return ResponseEntity.ok(carRepository.findAllBy());
     }
 
 }

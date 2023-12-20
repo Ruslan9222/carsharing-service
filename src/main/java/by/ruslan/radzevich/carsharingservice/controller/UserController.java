@@ -11,6 +11,8 @@ import by.ruslan.radzevich.carsharingservice.model.Card;
 import by.ruslan.radzevich.carsharingservice.model.User;
 import by.ruslan.radzevich.carsharingservice.repository.CardRepository;
 import by.ruslan.radzevich.carsharingservice.repository.UserRepository;
+import by.ruslan.radzevich.carsharingservice.repository.view.CarsView;
+import by.ruslan.radzevich.carsharingservice.repository.view.UserView;
 import by.ruslan.radzevich.carsharingservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -19,6 +21,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -80,5 +84,10 @@ public class UserController {
             @PathVariable("id") long id) {
         userService.updateEmailWithCustomQuery(id, String.valueOf(updateEmailDtoDto));
         return ResponseEntity.ok();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserView>> findAll() {
+        return ResponseEntity.ok(userRepository.findAllBy());
     }
 }
