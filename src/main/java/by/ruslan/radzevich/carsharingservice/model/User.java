@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,8 @@ public class User implements UserDetails {
     private String password;
     private byte[] driversLicense;
     private String email;
+    @OneToMany
+    private List<Card> card;
 
 
 
