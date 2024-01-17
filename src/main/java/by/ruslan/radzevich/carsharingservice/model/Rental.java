@@ -20,5 +20,6 @@ public class Rental extends AbstractModelId{
     private byte[] photo;
     private String comment;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 }

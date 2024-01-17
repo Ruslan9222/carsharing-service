@@ -16,7 +16,7 @@ public class Card extends AbstractModelId {
     private String cv;
     private String name;
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     private User ownerCard;
 
 

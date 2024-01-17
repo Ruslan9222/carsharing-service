@@ -2,10 +2,7 @@ package by.ruslan.radzevich.carsharingservice.model;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,6 +15,7 @@ import java.math.BigDecimal;
 public class CarPrice extends AbstractModelId{
     private BigDecimal price;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
     private Car car;
 
 }
