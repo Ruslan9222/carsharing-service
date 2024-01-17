@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @ToString
 public class Car extends AbstractModelId {
     private String model;
+    @Column(unique = true)
     private String winCode;
     private String classCar;
     private double latitude;
