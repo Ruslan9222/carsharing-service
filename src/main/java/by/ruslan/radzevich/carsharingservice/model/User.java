@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -27,9 +28,7 @@ public class User implements UserDetails {
     private byte[] driversLicense;
     private String email;
     @OneToMany
-    private List<Card> card;
-
-
+    private List<Card> card = new ArrayList<>();
 
 
     @Enumerated(EnumType.STRING)
