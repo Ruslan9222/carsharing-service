@@ -29,7 +29,9 @@ public class User implements UserDetails {
     private byte[] driversLicense;
     private String email;
     @OneToMany
-    private List<Card> card = new ArrayList<>();
+    private List <Card> card = new ArrayList<>();
+    @OneToMany
+    private List <Car> rentCars = new ArrayList<>();
 
 
     @Enumerated(EnumType.STRING)
