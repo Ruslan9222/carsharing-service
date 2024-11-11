@@ -107,6 +107,20 @@
                 </configuration>
             </plugin>
 
+<!--            <plugin>-->
+<!--                <groupId>by.ruslan.radzevich</groupId>-->
+<!--                <artifactId>example</artifactId>-->
+<!--                <version>0.0.1-SNAPSHOT</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>install</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>start program</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
         </plugins>
     </build>
 
