@@ -107,19 +107,25 @@
                 </configuration>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <groupId>by.ruslan.radzevich</groupId>-->
-<!--                <artifactId>example</artifactId>-->
-<!--                <version>0.0.1-SNAPSHOT</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>install</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>start program</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>by.ruslan</groupId>
+                <artifactId>MyMavenPlugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+
+                <configuration>
+                    <pathToRoot>C:\Users\Home-PC\IdeaProjects\MyMavenPlugin\target\classes</pathToRoot>
+                    <path>by.ruslan.radzevich.plugin</path>
+                    <className>MyMavenPlugin</className>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>start program</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
     </build>
