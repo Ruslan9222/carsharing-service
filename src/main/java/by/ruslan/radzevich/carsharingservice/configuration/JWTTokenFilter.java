@@ -12,21 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
 @RequiredArgsConstructor
 public class JWTTokenFilter extends OncePerRequestFilter {
-  private final JWTTokenProvider jwtTokenProvider;
 
-  @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    String token = jwtTokenProvider.resolveToken(request);
-    if (token != null && jwtTokenProvider.validateToken(token)) {
-      Authentication auth = jwtTokenProvider.getAuthentication(token);
+    private final JWTTokenProvider jwtTokenProvider;
 
-      if (auth != null) {
-        SecurityContextHolder.getContext().setAuthentication(auth);
-      }
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+        FilterChain filterChain) throws ServletException, IOException {
+        String token = jwtTokenProvider.resolveToken(request);
+        if (token != null && jwtTokenProvider.validateToken(token)) {
+            Authentication auth = jwtTokenProvider.getAuthentication(token);
+
+            if (auth != null) {
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+        }
+        filterChain.doFilter(request, response);
     }
-    filterChain.doFilter(request, response);
-  }
 }
