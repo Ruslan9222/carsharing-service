@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME}
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: ${DATASOURCE_DRIVER}
+  liquibase:
+    enabled: ${MIGRATION_ENABLED}
+    change-log: ${CHANGELOG_DIR}/${CHANGELOG_FILE}
+    url: ${DATASOURCE_URL}
+    user: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    default-schema: ${DEFAULT_SCHEMA}
+    liquibase-schema: ${MIGRATION_SCHEMA}
+  jpa:
+    show-sql: ${SHOW_SQL}
+    properties:
+      hibernate:
+        show_sql: ${SHOW_SQL}
+        format_sql: ${SHOW_SQL}
+        ddl-auto: validate
+        default_schema: ${DEFAULT_SCHEMA}
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 252MB
+      enabled: true

@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_db_schema
+      author: Ruslan-Radevich
+      changes:
+        - sqlFile:
+            path: db/changelog/v1.0/sql/01-init-db-schema.sql
+            relativeToChangelogFile: false

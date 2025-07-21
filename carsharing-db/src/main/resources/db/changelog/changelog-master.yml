@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_db_schema
+      author: Ruslan-Radevich
+  - include:
+      file: db/changelog/v1.0/01-init-db-schema.yml

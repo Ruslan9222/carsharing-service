@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+#  app:
+#    build:
+#      context: .
+#    image: carsharing-service:latest
+#    container_name: carsharing-service
+#    ports:
+#      - "${SERVER_PORT}:${SERVER_PORT}"
+#    depends_on:
+#      - db
+#    environment:
+#      - APPLICATION_NAME=${APPLICATION_NAME}
+#      - SERVER_PORT=${SERVER_PORT}
+#
+#      - DATASOURCE_URL=${DATASOURCE_URL}
+#      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+#      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+#      - DATASOURCE_DRIVER=${DATASOURCE_DRIVER}
+#      - DEFAULT_SCHEMA=${DEFAULT_SCHEMA}
+#      - SHOW_SQL=${SHOW_SQL}
+#
+#      - MIGRATION_ENABLED=${MIGRATION_ENABLED}
+#      - MIGRATION_SCHEMA=${MIGRATION_SCHEMA}
+#      - CHANGELOG_DIR=${CHANGELOG_DIR}
+#      - CHANGELOG_FILE=${CHANGELOG_FILE}
+#
+#      - KAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS}
+#      - KAFKA_PRODUCER_KEY_SERIALIZER=${KAFKA_PRODUCER_KEY_SERIALIZER}
+#      - KAFKA_PRODUCER_VALUE_SERIALIZER=${KAFKA_PRODUCER_VALUE_SERIALIZER}
+
+  db:
+    image: postgres:15.5
+    container_name: carsharing_db
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    volumes:
+      - test:/var/lib/postgresql/data
+      - "./init-scripts:/docker-entrypoint-initdb.d"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATASOURCE_USERNAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_USER=${DATASOURCE_USERNAME}
+      - POSTGRES_PASSWORD=${DATASOURCE_PASSWORD}
+      - POSTGRES_DB=carsharing_db
+
+volumes:
+  test: {}
