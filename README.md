@@ -1,8 +1,9 @@
 # carsharing-service
-1. Java 8-17
+1. Java 17
 2. Spring Boot
 3. Spring Data JPA (ORM)
 4. Postgres
+5. Liquibase
 5. REST API
 6. Maven
 7. Spring Security
