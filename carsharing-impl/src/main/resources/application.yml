@@ -27,3 +27,8 @@ spring:
       max-file-size: 25MB
       max-request-size: 252MB
       enabled: true
+
+jwt:
+  token:
+    secret: ${JWT.TOKEN.SECRET}
+    expired: ${JWT.TOKEN.EXPIRED}

@@ -1,7 +1,11 @@
-//package by.ruslan.radzevich.repository;
-//
-//import by.ruslan.radzevich.carsharingservice.model.Card;
-//import org.springframework.data.jpa.repository.JpaRepository;
-//
-//public interface CardRepository extends JpaRepository<by.ruslan.radzevich.model.entity.Card, Long> {
-//}
+package by.ruslan.radzevich.repository;
+
+
+import by.ruslan.radzevich.model.entity.Card;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CardRepository extends JpaRepository<Card, Long> {
+
+}

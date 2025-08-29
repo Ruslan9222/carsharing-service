@@ -1,5 +1,6 @@
 package by.ruslan.radzevich.model.entity;
 
+import java.math.BigDecimal;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 public class Car extends AbstractModelId {
+
     private String model;
     @Column(unique = true)
     private String winCode;
@@ -21,6 +23,10 @@ public class Car extends AbstractModelId {
     private double latitude;
     private double longitude;
     private byte[] photo;
+    private BigDecimal price;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }
