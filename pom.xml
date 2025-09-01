@@ -30,11 +30,12 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- Общее управление версиями для всех модулей -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
+        <artifactId>spring-boot-dependencies</artifactId>
         <version>3.2.4</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
