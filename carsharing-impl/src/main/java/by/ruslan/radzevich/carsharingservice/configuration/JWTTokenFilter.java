@@ -1,18 +1,18 @@
 package by.ruslan.radzevich.carsharingservice.configuration;
 
+import io.micrometer.common.lang.NonNullApi;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import java.io.IOException;
 
-
-
+@NonNullApi
 @RequiredArgsConstructor
 public class JWTTokenFilter extends OncePerRequestFilter {
 
@@ -24,7 +24,6 @@ public class JWTTokenFilter extends OncePerRequestFilter {
         String token = jwtTokenProvider.resolveToken(request);
         if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
-
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
