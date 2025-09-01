@@ -2,9 +2,9 @@ package by.ruslan.radzevich.carsharingservice.validation;
 
 import by.ruslan.radzevich.carsharingservice.anotations.PasswordMatchers;
 import by.ruslan.radzevich.carsharingservice.dto.CreateUserDto;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 public class PasswordMatchersValidator implements ConstraintValidator<PasswordMatchers, Object> {
 

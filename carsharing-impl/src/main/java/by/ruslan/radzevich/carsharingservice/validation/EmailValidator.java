@@ -1,9 +1,9 @@
 package by.ruslan.radzevich.carsharingservice.validation;
 
-import by.ruslan.radzevich.carsharingservice.anotations.ValidEmail;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import by.ruslan.radzevich.carsharingservice.anotations.ValidEmail;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

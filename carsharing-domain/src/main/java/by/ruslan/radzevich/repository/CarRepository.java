@@ -1,14 +1,14 @@
 package by.ruslan.radzevich.repository;
 
 
+import by.ruslan.radzevich.model.entity.Car;
 import by.ruslan.radzevich.view.CarsView;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CarRepository extends JpaRepository<by.ruslan.radzevich.model.entity.Car, Long> {
+public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<CarsView> findAllBy();
 
