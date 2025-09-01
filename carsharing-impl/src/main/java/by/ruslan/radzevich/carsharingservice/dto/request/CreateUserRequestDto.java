@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.carsharingservice.dto;
+package by.ruslan.radzevich.carsharingservice.dto.request;
 
 import by.ruslan.radzevich.carsharingservice.anotations.PasswordMatchers;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,7 +15,7 @@ import lombok.Builder;
  */
 @Builder
 @PasswordMatchers
-public record CreateUserDto(
+public record CreateUserRequestDto(
 
     @Schema(description = "Полное имя пользователя",
         example = "Иван")

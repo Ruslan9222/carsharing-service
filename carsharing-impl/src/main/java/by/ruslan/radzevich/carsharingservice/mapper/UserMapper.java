@@ -1,17 +1,19 @@
-//package by.ruslan.radzevich.carsharingservice.mapper;
-//
-//import by.ruslan.radzevich.carsharingservice.dto.CreateUserDto;
-//import by.ruslan.radzevich.carsharingservice.model.User;
-//import org.springframework.stereotype.Component;
-//
-//@Component
-//public class UserMapper {
-//    public User createUserDtoToUser(CreateUserDto dto) {
-//        User user = new User();
-//        user.setName(dto.getName());
-//        user.setUsername(dto.getUsername());
-//        user.setPassword(dto.getPassword());
-//        user.setEmail(dto.getEmail());
-//        return user;
-//    }
-//}
+package by.ruslan.radzevich.carsharingservice.mapper;
+
+import by.ruslan.radzevich.carsharingservice.dto.request.CreateUserRequestDto;
+
+import by.ruslan.radzevich.model.entity.User;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserMapper {
+    public User createUserDtoToUser(CreateUserRequestDto dto) {
+        User user = new User();
+        user.setName(dto.name());
+        user.setUsername(dto.username());
+        user.setPassword(dto.password());
+        user.setPassword(dto.confirmPassword());
+        user.setEmail(dto.email());
+        return user;
+    }
+}
