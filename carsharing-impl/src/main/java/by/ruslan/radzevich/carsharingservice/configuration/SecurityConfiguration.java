@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 /**
  * Основной класс конфигурации безопасности для carsharing-сервиса.
  * <p>
- * Настраивает цепочку фильтров Spring Security, включая интеграцию JWT-аутентификации
- * через {@link JWTConfig}, отключение CSRF и установку политики session-less.
+ * Настраивает цепочку фильтров Spring Security, включая интеграцию JWT-аутентификации через
+ * {@link JWTConfig}, отключение CSRF и установку политики session-less.
  * </p>
  *
  * @author ruslan

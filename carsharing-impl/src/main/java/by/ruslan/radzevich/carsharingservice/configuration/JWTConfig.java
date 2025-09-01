@@ -10,34 +10,35 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * Конфигурационный класс для интеграции JWT-фильтра в цепочку Spring Security.
  * <p>
- * Расширяет {@link SecurityConfigurerAdapter}, позволяя внедрить {@link JWTTokenFilter}
- * перед стандартным {@link UsernamePasswordAuthenticationFilter}.
- * Это обеспечивает предварительную обработку JWT-токенов до попытки аутентификации по логину/паролю.
+ * Расширяет {@link SecurityConfigurerAdapter}, позволяя внедрить {@link JWTTokenFilter} перед
+ * стандартным {@link UsernamePasswordAuthenticationFilter}. Это обеспечивает предварительную
+ * обработку JWT-токенов до попытки аутентификации по логину/паролю.
  * </p>
  *
  * <p>
- * Используется в {@link SecurityConfigurerAdapter}
- * или в {@link SecurityFilterChain} для настройки безопасности.
+ * Используется в {@link SecurityConfigurerAdapter} или в {@link SecurityFilterChain} для настройки
+ * безопасности.
  * </p>
  *
  * @author ruslan
  */
 @RequiredArgsConstructor
 public class JWTConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
-  private final JWTTokenProvider jwtTokenProvider;
 
-  /**
-   * Добавляет {@link JWTTokenFilter} в цепочку фильтров Spring Security.
-   * <p>
-   * Фильтр вставляется перед {@link UsernamePasswordAuthenticationFilter}, чтобы перехватывать
-   * и обрабатывать JWT-токены до стандартной аутентификации.
-   * </p>
-   *
-   * @param httpSecurity объект конфигурации безопасности, предоставляемый Spring Security
-   */
-  @Override
-  public void configure(HttpSecurity httpSecurity) {
-    JWTTokenFilter jwtTokenFilter = new JWTTokenFilter(jwtTokenProvider);
-    httpSecurity.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-  }
+    private final JWTTokenProvider jwtTokenProvider;
+
+    /**
+     * Добавляет {@link JWTTokenFilter} в цепочку фильтров Spring Security.
+     * <p>
+     * Фильтр вставляется перед {@link UsernamePasswordAuthenticationFilter}, чтобы перехватывать и
+     * обрабатывать JWT-токены до стандартной аутентификации.
+     * </p>
+     *
+     * @param httpSecurity объект конфигурации безопасности, предоставляемый Spring Security
+     */
+    @Override
+    public void configure(HttpSecurity httpSecurity) {
+        JWTTokenFilter jwtTokenFilter = new JWTTokenFilter(jwtTokenProvider);
+        httpSecurity.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+    }
 }
