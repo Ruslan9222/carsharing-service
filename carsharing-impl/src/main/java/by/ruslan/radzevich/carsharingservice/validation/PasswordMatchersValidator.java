@@ -11,8 +11,8 @@ public class PasswordMatchersValidator implements ConstraintValidator<PasswordMa
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext constraintValidatorContext) {
         if (obj instanceof CreateUserDto userSignupRequest) {
-            String password = userSignupRequest.getPassword();
-            String confirmPassword = userSignupRequest.getConfirmPassword();
+            String password = userSignupRequest.password();
+            String confirmPassword = userSignupRequest.confirmPassword();
             return password != null && password.equals(confirmPassword);
         }
         return false;
