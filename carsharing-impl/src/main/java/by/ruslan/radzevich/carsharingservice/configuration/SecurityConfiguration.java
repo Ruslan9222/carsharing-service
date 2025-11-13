@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
             .with(new JWTConfig(jwtTokenProvider), jwt -> {
-            }); // современный способ
+            });
 
         return http.build();
     }

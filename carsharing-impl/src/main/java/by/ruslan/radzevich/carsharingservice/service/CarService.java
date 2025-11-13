@@ -1,24 +1,25 @@
 package by.ruslan.radzevich.carsharingservice.service;
 
-
+import by.ruslan.radzevich.carsharingservice.dto.request.CreateCarRequestDto;
+import by.ruslan.radzevich.carsharingservice.dto.response.CreateCarResponseDto;
 import by.ruslan.radzevich.model.entity.Car;
-import by.ruslan.radzevich.repository.CarRepository;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
-@Service
-public class CarService {
+/**
+ * Сервисный интерфейс для работы с автомобилями в системе каршеринга.
+ *
+ * @author Ruslan
+ */
+public interface CarService {
 
-    private final CarRepository carRepository;
+    /**
+     * Создаёт новый автомобиль на основе входных данных запроса.
+     *
+     * @param createCarRequestDto DTO-запрос с данными автомобиля
+     * @return DTO-ответ с идентификатором созданного автомобиля
+     */
+    CreateCarResponseDto createCar(CreateCarRequestDto createCarRequestDto);
 
-    public List<Car> findCarsNearby(double latitude, double longitude, double radius) {
-        double minLat = latitude - radius;
-        double maxLat = latitude + radius;
-        double minLong = longitude - radius;
-        double maxLong = longitude + radius;
+    List<Car> findCarsNearby(double latitude, double longitude, double radius);
 
-        return carRepository.findByLatitudeBetweenAndLongitudeBetween(minLat, maxLat, minLong, maxLong);
-    }
 }

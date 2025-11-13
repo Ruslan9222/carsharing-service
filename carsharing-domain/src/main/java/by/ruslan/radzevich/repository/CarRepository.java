@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
+    boolean existsByWinCode(String winCode);
+
     List<CarsView> findAllBy();
 
     List<by.ruslan.radzevich.model.entity.Car> findByLatitudeBetweenAndLongitudeBetween(
