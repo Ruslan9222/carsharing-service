@@ -3,6 +3,7 @@ package by.ruslan.radzevich.carsharingservice.service.impl;
 
 import by.ruslan.radzevich.carsharingservice.dto.request.CreateCarRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.response.CreateCarResponseDto;
+import by.ruslan.radzevich.carsharingservice.exception.CarAlreadyExistsException;
 import by.ruslan.radzevich.carsharingservice.mapper.CarMapper;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
 import by.ruslan.radzevich.model.entity.Car;
@@ -24,7 +25,7 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public CreateCarResponseDto createCar(CreateCarRequestDto createCarRequestDto) {
         if (carRepository.existsByWinCode(createCarRequestDto.winCode())) {
-            throw new IllegalArgumentException("Автомобиль с таким VIN уже существует");
+            throw new CarAlreadyExistsException("Автомобиль с таким VIN уже существует");
         }
         Car car = carMapper.mapToEntity(createCarRequestDto);
         Car savedCar = carRepository.save(car);
