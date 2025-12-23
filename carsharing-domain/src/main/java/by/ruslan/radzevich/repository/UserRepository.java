@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     List<UserView> findAllBy();
-@Transactional
+
     @Modifying
     @Query("UPDATE User u SET u.email = :email WHERE u.id = :id")
     void updateEmailByID(@Param(value = "id") long id, @Param(value = "email") String email);
