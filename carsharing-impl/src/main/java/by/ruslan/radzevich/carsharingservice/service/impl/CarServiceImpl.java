@@ -6,6 +6,7 @@ import by.ruslan.radzevich.carsharingservice.dto.response.CreateCarResponseDto;
 import by.ruslan.radzevich.carsharingservice.exception.CarException;
 import by.ruslan.radzevich.carsharingservice.mapper.CarMapper;
 import by.ruslan.radzevich.carsharingservice.service.CarService;
+import by.ruslan.radzevich.carsharingservice.utils.ConstrainExceptionUtils;
 import by.ruslan.radzevich.model.entity.Car;
 import by.ruslan.radzevich.repository.CarRepository;
 import java.util.List;
@@ -25,7 +26,7 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public CreateCarResponseDto createCar(CreateCarRequestDto createCarRequestDto) {
         if (carRepository.existsByWinCode(createCarRequestDto.winCode())) {
-            throw new CarException("Автомобиль с таким VIN уже существует");
+            throw new CarException(ConstrainExceptionUtils.VIN_ALREADY_EXISTS);
         }
         Car car = carMapper.mapToEntity(createCarRequestDto);
         Car savedCar = carRepository.save(car);

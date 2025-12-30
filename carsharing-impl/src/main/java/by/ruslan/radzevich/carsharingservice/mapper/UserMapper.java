@@ -9,7 +9,19 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+    /**
+     * Преобразует DTO-запрос {@link CreateUserRequestDto} в сущность {@link User}.
+     *
+     * @param createUserRequestDto входные данные для создания пользователя
+     * @return сущность {@link User}, готовая для сохранения в базе
+     */
     User mapToEntity(CreateUserRequestDto createUserRequestDto);
 
-    CreateUserResponseDto mapToResponseDto (User user);
+    /**
+     * Преобразует сущность {@link User} в DTO-ответ {@link CreateUserResponseDto}.
+     *
+     * @param user сохранённая сущность пользователя
+     * @return DTO-ответ с идентификатором созданного пользователя
+     */
+    CreateUserResponseDto mapToResponseDto(User user);
 }

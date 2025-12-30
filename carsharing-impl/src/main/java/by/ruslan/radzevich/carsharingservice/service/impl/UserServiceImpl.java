@@ -5,6 +5,7 @@ import by.ruslan.radzevich.carsharingservice.dto.response.CreateUserResponseDto;
 import by.ruslan.radzevich.carsharingservice.exception.UserException;
 import by.ruslan.radzevich.carsharingservice.mapper.UserMapper;
 import by.ruslan.radzevich.carsharingservice.service.UserService;
+import by.ruslan.radzevich.carsharingservice.utils.ConstrainExceptionUtils;
 import by.ruslan.radzevich.model.entity.User;
 import by.ruslan.radzevich.model.enums.Role;
 import by.ruslan.radzevich.repository.UserRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -30,8 +32,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     @Transactional
     public CreateUserResponseDto create(CreateUserRequestDto createUser) {
-        if(userRepository.existsByEmail(createUser.email())){
-           throw new UserException("Пользователь с таким Email уже существует");
+        if (userRepository.existsByEmail(createUser.email())) {
+            throw new UserException(ConstrainExceptionUtils.EMAIL_ALREADY_EXISTS);
         }
         User user = userMapper.mapToEntity(createUser);
         user.setRoleList(Set.of(Role.USER));
@@ -44,13 +46,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
-            .orElseThrow(UserException::new);
+                .orElseThrow(UserException::new);
 
         return org.springframework.security.core.userdetails.User.builder()
-            .username(user.getUsername())
-            .password(user.getPassword())
-            .authorities(user.getRoleList())
-            .build();
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .authorities(user.getRoleList())
+                .build();
     }
 
     public void updateEmailWithCustomQuery(Long id, String email) {
