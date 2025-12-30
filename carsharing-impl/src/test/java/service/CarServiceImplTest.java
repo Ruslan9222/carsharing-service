@@ -2,7 +2,7 @@ package service;
 
 import by.ruslan.radzevich.carsharingservice.dto.request.CreateCarRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.response.CreateCarResponseDto;
-import by.ruslan.radzevich.carsharingservice.exception.CarAlreadyExistsException;
+import by.ruslan.radzevich.carsharingservice.exception.CarException;
 import by.ruslan.radzevich.carsharingservice.mapper.CarMapper;
 import by.ruslan.radzevich.carsharingservice.service.impl.CarServiceImpl;
 import by.ruslan.radzevich.model.entity.Car;
@@ -79,8 +79,8 @@ class CarServiceImplTest {
     void createCar_duplicateVin_throwsException() {
         when(carRepository.existsByWinCode(requestDto.winCode())).thenReturn(true);
 
-        CarAlreadyExistsException exception = assertThrows(
-            CarAlreadyExistsException.class,
+        CarException exception = assertThrows(
+            CarException.class,
             () -> carService.createCar(requestDto)
         );
 

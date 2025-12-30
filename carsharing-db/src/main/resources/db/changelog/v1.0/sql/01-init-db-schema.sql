@@ -15,9 +15,9 @@ CREATE TABLE carsharing_service.db_user
 
 CREATE TABLE carsharing_service.db_user_roles
 (
-    db_user_use_id BIGINT      NOT NULL,
+    db_user_id BIGINT      NOT NULL,
     role_list      VARCHAR(50) NOT NULL,
-    FOREIGN KEY (db_user_use_id) REFERENCES carsharing_service.db_user (id) ON DELETE CASCADE
+    FOREIGN KEY (db_user_id) REFERENCES carsharing_service.db_user (id) ON DELETE CASCADE
 );
 
 

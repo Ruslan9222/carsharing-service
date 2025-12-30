@@ -4,3 +4,8 @@ databaseChangeLog:
       author: Ruslan-Radevich
   - include:
       file: db/changelog/v1.0/01-init-db-schema.yml
+  - changeSet:
+      id: create-user-roles-table
+      author: Ruslan-Radevich
+  - include:
+      file: db/changelog/v1.0/02-create-user-roles-table.yml
