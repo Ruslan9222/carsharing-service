@@ -14,7 +14,7 @@ import lombok.Builder;
  *
  * @author ruslan
  */
-//@Builder
+@Builder
 @PasswordMatchers
 public record CreateUserRequestDto(
 

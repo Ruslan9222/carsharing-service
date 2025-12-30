@@ -1,18 +1,22 @@
 package by.ruslan.radzevich.carsharingservice.controller;
 
-import by.ruslan.radzevich.carsharingservice.configuration.JWTTokenProvider;
-import by.ruslan.radzevich.carsharingservice.dto.AuthRequestDto;
+import by.ruslan.radzevich.carsharingservice.dto.request.AuthRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.request.CreateUserRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.response.CreateUserResponseDto;
 import by.ruslan.radzevich.carsharingservice.service.impl.UserServiceImpl;
 import by.ruslan.radzevich.model.entity.Card;
 import by.ruslan.radzevich.repository.CardRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +27,33 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "UserController", description = "Контроллер для управления пользователями")
 @RequestMapping("/user")
 public class UserController {
 
 
     private final UserServiceImpl userService;
-    private final JWTTokenProvider tokenProvider;
+
     private final CardRepository cardRepository;
+
+    @Operation(
+            description = "API предназначено для добавления пользователя в базу"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad Request",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not Found",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "409", description = "Conflict",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "500",
+                    description = "Internal Server Error",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "503", description = "Service Unavailable",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+    })
 
 
     @PostMapping("/registration")
@@ -37,19 +61,28 @@ public class UserController {
         return userService.create(dto);
     }
 
+    @Operation(
+            description = "API предназначено для добавления авторизаций пользователя "
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad Request",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not Found",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "409", description = "Conflict",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "500",
+                    description = "Internal Server Error",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "503", description = "Service Unavailable",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+    })
+
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthRequestDto dto) {
-
-        UserDetails userDetails = userService.loadUserByUsername(dto.getUsername());
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        if (encoder.matches(dto.getPassword(), userDetails.getPassword())) {
-            String token = tokenProvider.generateToken(userDetails.getUsername(),
-                    userDetails.getAuthorities());
-            return ResponseEntity.ok(token);
-        }
-        return ResponseEntity.badRequest().build();
+    public String login(@RequestBody AuthRequestDto authRequestDto) {
+        return userService.authenticate(authRequestDto.username(), authRequestDto.password());
     }
 
 //    @PostMapping("/card")
