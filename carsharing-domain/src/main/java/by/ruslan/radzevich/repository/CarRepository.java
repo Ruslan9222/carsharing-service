@@ -14,7 +14,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<CarsView> findAllBy();
 
-    List<by.ruslan.radzevich.model.entity.Car> findByLatitudeBetweenAndLongitudeBetween(
+    List<Car> findByLatitudeBetweenAndLongitudeBetween(
         double minLat,
         double maxLat,
         double minLong,
