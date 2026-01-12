@@ -3,6 +3,7 @@ package by.ruslan.radzevich.carsharingservice.controller;
 import by.ruslan.radzevich.carsharingservice.dto.request.AuthRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.request.CreateUserRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.response.CreateUserResponseDto;
+import by.ruslan.radzevich.carsharingservice.service.UserService;
 import by.ruslan.radzevich.carsharingservice.service.impl.UserServiceImpl;
 import by.ruslan.radzevich.model.entity.Card;
 import by.ruslan.radzevich.repository.CardRepository;
@@ -32,8 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    private final UserServiceImpl userService;
-
+    private final UserService userService;
     private final CardRepository cardRepository;
 
     @Operation(

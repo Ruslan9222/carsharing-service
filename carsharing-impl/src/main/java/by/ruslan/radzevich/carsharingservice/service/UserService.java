@@ -2,6 +2,7 @@ package by.ruslan.radzevich.carsharingservice.service;
 
 import by.ruslan.radzevich.carsharingservice.dto.request.CreateUserRequestDto;
 import by.ruslan.radzevich.carsharingservice.dto.response.CreateUserResponseDto;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Сервисный интерфейс для работы с пользователями.
@@ -18,4 +19,17 @@ public interface UserService {
      */
 
     CreateUserResponseDto create(CreateUserRequestDto createUser);
+
+
+    /**
+     * Авторизовывает пользователя основе входных данных запроса.
+     *
+     * @param username имя пользователя
+     * @param rawPassword пароль пользователя
+     * @return Jwt token для выдачи доступов пользователю согласно роли
+     */
+
+    String authenticate(String username, String rawPassword);
+
+    UserDetails loadUserByUsername(String username);
 }

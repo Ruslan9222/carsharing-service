@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userMapper.mapToResponseDto(savedUser);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public String authenticate(String username, String rawPassword) {
         UserDetails userDetails = loadUserByUsername(username);
 
